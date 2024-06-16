@@ -9,7 +9,7 @@ export class ApiService {
 
   private httpClient = inject(HttpClient);
 
-  getRequest(url: string, params: any) {
+  getRequest(url: string, params?: any) {
     if (params)
       return this.httpClient.get(`${this.getCompositeUrl(url)}/${params}`, {
         headers: {
