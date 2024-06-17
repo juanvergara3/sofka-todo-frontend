@@ -11,47 +11,21 @@ export class ApiService {
 
   getRequest(url: string, params?: any) {
     if (params)
-      return this.httpClient.get(`${this.getCompositeUrl(url)}/${params}`, {
-        headers: {
-          'Authorization': `Bearer ${environment.jwtDevOnlyToken}`,
-        }
-      });
+      return this.httpClient.get(`${this.getCompositeUrl(url)}/${params}`);
 
-    return this.httpClient.get(this.getCompositeUrl(url), {
-      headers: {
-        'Authorization': `Bearer ${environment.jwtDevOnlyToken}`,
-      }
-    });
+    return this.httpClient.get(this.getCompositeUrl(url));
   }
 
   postRequest(url: string, body: any) {
-    let response = this.httpClient.post(this.getCompositeUrl(url), body, {
-      headers: {
-        'Authorization': `Bearer ${environment.jwtDevOnlyToken}`,
-      }
-    });
-
-    return response;
+    return this.httpClient.post(this.getCompositeUrl(url), body);;
   }
 
   patchRequest(url: string, body: any, id: string) {
-    let response = this.httpClient.patch(`${this.getCompositeUrl(url)}/${id}`, body, {
-      headers: {
-        'Authorization': `Bearer ${environment.jwtDevOnlyToken}`,
-      }
-    });
-
-    return response;
+    return this.httpClient.patch(`${this.getCompositeUrl(url)}/${id}`, body);
   }
 
   deleteRequest(url: string, id: string) {
-    let response = this.httpClient.delete(`${this.getCompositeUrl(url)}/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${environment.jwtDevOnlyToken}`,
-      }
-    });
-
-    return response;
+    return this.httpClient.delete(`${this.getCompositeUrl(url)}/${id}`);
   }
 
   private getCompositeUrl(url: string): string {
