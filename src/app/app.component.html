@@ -1,15 +1,1 @@
-<div>Placeholder</div>
-
-<app-login></app-login>
-<button (click)="logOut()">Logout</button>
-
-<button (click)="getLists()">get lists</button>
-
-
-@for (list of lists(); track list) {
-<p>{{list.title}}</p>
-<p>{{list.color}}</p>
-<p>{{list.user}}</p>
-}
-
 <router-outlet></router-outlet>
