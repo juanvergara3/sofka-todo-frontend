@@ -20,8 +20,8 @@ export class ApiService {
     return this.httpClient.post(this.getCompositeUrl(url), body);;
   }
 
-  patchRequest(url: string, body: any, id: string) {
-    return this.httpClient.patch(`${this.getCompositeUrl(url)}/${id}`, body);
+  putRequest(url: string, body: any, id: string) {
+    return this.httpClient.put(`${this.getCompositeUrl(url)}/${id}`, body);
   }
 
   deleteRequest(url: string, id: string) {
