@@ -1,0 +1,10 @@
+<div class="main-menu">
+
+    @if(!isLoggedIn()){
+    <button [routerLink]="['/login']">Login</button>
+    <button [routerLink]="['/signup']">SignUp</button>
+    } @else {
+    <button (click)="logout()">Logout</button>
+    }
+
+</div>

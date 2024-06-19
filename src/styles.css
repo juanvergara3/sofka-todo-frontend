@@ -1,1 +1,181 @@
-/* You can add global styles to this file, and also import other style files */
+/* variables */
+
+:root {
+    --Black: #000000;
+    --White: #FFFFFF;
+    --Primary: #ed7923;
+    --Secondary: #f0de52;
+    --Dark-dark-grey: #1e1f22;
+    --Dark-medium-grey: #2b2d31;
+    --Dark-light-grey: #383a40;
+    --Light-dark-grey: #7B7D85;
+    --Light-medium-grey: #afb0b4;
+    --Light-light-grey: #e2e2e3;
+    --Text-input-field: #F7F7F7;
+    --Dark: #232830;
+    --disabled-bg: #4e5056;
+}
+
+/* Scrollbars */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--White);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--Light-dark-grey);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--Dark-medium-grey);
+}
+
+/* globals */
+
+* {
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif !important;
+}
+
+html {
+    font-family: 'Work Sans', sans-serif !important;
+    margin: 0 !important;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 !important;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* global container that encapsulates the entire window */
+
+.content {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--Dark-dark-grey);
+    display: flex;
+    flex-direction: row;
+}
+
+/* containers */
+
+.container-row {
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.container-column {
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/*seondary menu buttons*/
+
+.secondary-menu-main-button {
+    width: auto;
+    height: 32px;
+    color: var(--White);
+    font-size: 12px;
+    background-color: var(--Dark-dark-grey);
+    border-radius: 5px;
+    border-color: var(--Primary);
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+.secondary-menu-main-button:disabled {
+    background-color: var(--disabled-bg);
+    border-color: var(--Light-medium-grey);
+    color: var(--Light-medium-grey);
+    cursor: not-allowed;
+}
+
+.secondary-menu-secondary-button {
+    width: auto;
+    height: 32px;
+    color: var(--White);
+    font-size: 12px;
+    background-color: var(--Dark-dark-grey);
+    border-radius: 5px;
+    border-color: var(--White);
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.secondary-menu-secondary-button:disabled {
+    background-color: var(--disabled-bg);
+    border-color: var(--Light-medium-grey);
+    color: var(--Light-medium-grey);
+    cursor: not-allowed;
+}
+
+.image-button {
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(360deg) brightness(102%) contrast(102%);
+}
+
+/* secondary menu labels */
+
+.secondary-menu-label {
+    color: var(--White);
+    font-size: 14px;
+}
+
+/* inputs */
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="date"] {
+    font-size: 14px;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    padding: 0 5px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(210%) hue-rotate(194deg) brightness(116%) contrast(100%);
+    border-radius: 5px;
+}
+
+input::-webkit-calendar-picker-indicator:hover {
+    filter: brightness(0) saturate(100%) invert(76%) sepia(71%) saturate(573%) hue-rotate(17deg) brightness(101%) contrast(81%);
+    cursor: pointer;
+}
