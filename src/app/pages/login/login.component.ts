@@ -11,21 +11,21 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  form: FormGroup;
+  loginForm: FormGroup;
 
   formBuilder = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
 
   constructor() {
-    this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
   login() {
-    const credentials = this.form.value;
+    const credentials = this.loginForm.value;
 
     if (credentials.email && credentials.password) {
       this.authService.login(credentials.email, credentials.password)
