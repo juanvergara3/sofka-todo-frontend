@@ -15,4 +15,22 @@ export class ListService {
   getLists(): Observable<List[]> {
     return this.apiService.getRequest(this.baseUrl) as Observable<List[]>;
   }
+
+  createList(list: List): Observable<List> {
+    if (list.color.startsWith('#'))
+      list.color = list.color.substring(1);
+
+    return this.apiService.postRequest(`${this.baseUrl}/new`, list) as Observable<List>;
+  }
+
+  updateList(list: List, id: string): Observable<List> {
+    if (list.color.startsWith('#'))
+      list.color = list.color.substring(1);
+
+    return this.apiService.putRequest(`${this.baseUrl}/update`, list, id) as Observable<List>;
+  }
+
+  deleteList(id: string): Observable<List> {
+    return this.apiService.deleteRequest(`${this.baseUrl}/delete`, id) as Observable<List>;
+  }
 }

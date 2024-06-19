@@ -1,1 +1,26 @@
-<p>todo works!</p>
+<button type="button" class="button button-secondary" (click)="toggleCreatingList()">New list</button>
+
+<div class="container-row">
+    @for(list of listsArraySignal(); track list._id) {
+    <app-list [listItem]="list" (listDeleted)="removeList($event)"></app-list>
+    }
+
+    @if(isCreatingNewList){
+    <form [formGroup]="newListForm" (ngSubmit)="submitNewList()">
+        <fieldset>
+            <div class="form-field">
+                <label for="title">Title: </label>
+                <input id="title" name="title" formControlName="title">
+            </div>
+            <div class="form-field">
+                <label for="color">Color</label>
+                <input id="color" name="color" formControlName="color" type="color">
+            </div>
+        </fieldset>
+        <div class="form-buttons">
+            <button type="submit" class="button button-primary" [disabled]="canSubmit()">Submit</button>
+            <button type="button" class="button button-secondary" (click)="toggleCreatingList()">Cancel</button>
+        </div>
+    </form>
+    }
+</div>
