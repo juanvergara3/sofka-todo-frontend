@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ListComponent } from '../../components/list/list.component';
 import { ListService } from '../../services/list.service';
 import { List } from '../../interfaces/list.interface';
+import { NameService } from '../../services/name.service';
 
 @Component({
   selector: 'app-todo',
@@ -18,6 +19,7 @@ export class ToDoComponent {
 
   formBuilder = inject(FormBuilder);
   listService = inject(ListService);
+  nameService = inject(NameService);
 
   constructor() {
     this.newListForm = this.formBuilder.group({
@@ -58,5 +60,7 @@ export class ToDoComponent {
     this.listService.getLists().subscribe((lists: List[]) => {
       this.listsArraySignal.set(lists);
     });
+
+    this.nameService.updateName();
   }
 }

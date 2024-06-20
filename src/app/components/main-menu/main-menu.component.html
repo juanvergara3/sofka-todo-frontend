@@ -4,6 +4,7 @@
     <button [routerLink]="['/login']">Login</button>
     <button [routerLink]="['/signup']">SignUp</button>
     } @else {
+    <p>Hello {{nameComputed()}}!</p>
     <button (click)="logout()">Logout</button>
     }
 

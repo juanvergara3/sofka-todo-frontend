@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { ApiService } from './api.service';
 import { shareReplay, tap } from 'rxjs/operators';
 import { jwtDecode } from 'jwt-decode';
+import { NameService } from './name.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+
+    this.nameService.setName('');
   }
 
   isLoggedIn() {
@@ -43,6 +46,8 @@ export class AuthService {
 
     localStorage.setItem('id_token', authResult.token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt));
+
+    this.nameService.updateName();
   }
 
   private getJwtExpiresIn(token: string): number {
