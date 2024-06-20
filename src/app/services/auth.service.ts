@@ -10,11 +10,20 @@ import { NameService } from './name.service';
 export class AuthService {
 
   apiService = inject(ApiService);
+  nameService = inject(NameService);
 
   baseUrl = 'auth';
 
   login(email: string, password: string) {
     return this.apiService.postRequest(`${this.baseUrl}/login`, { email, password })
+      .pipe(
+        tap((res: any) => this.setSession(res as { token: string })),
+        shareReplay()
+      );
+  }
+
+  signUp(name: string, email: string, password: string) {
+    return this.apiService.postRequest(`${this.baseUrl}/signup`, { name, email, password })
       .pipe(
         tap((res: any) => this.setSession(res as { token: string })),
         shareReplay()
