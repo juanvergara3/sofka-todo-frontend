@@ -2,23 +2,57 @@
 <form [formGroup]="editListForm" (ngSubmit)="submitUpdatedList()">
     <fieldset>
         <div class="form-field">
-            <label for="title">Title: </label>
-            <input id="title" name="title" formControlName="title">
+            <label for="listTitle">Title: </label>
+            <input id="listTitle" name="listTitle" formControlName="listTitle">
         </div>
         <div class="form-field">
-            <label for="color">Color</label>
-            <input id="color" name="color" formControlName="color" type="color">
+            <label for="listColor">Color</label>
+            <input id="listColor" name="listColor" formControlName="listColor" type="color">
         </div>
     </fieldset>
     <div class="form-buttons">
-        <button type="submit" class="button button-primary" [disabled]="canSubmit()">Submit</button>
+        <button type="submit" class="button button-primary" [disabled]="canSubmitEditTistForm()">Submit</button>
         <button type="button" class="button button-secondary" [disabled]="!isEditingList"
             (click)="toggleEditingList()">Cancel</button>
     </div>
 </form>
 } @else {
-<p [ngStyle]="{'background-color': '#' + listItem.color}">{{listItem.title}}</p>
-}
 
-<button (click)="deleteList()">Delete</button>
-<button (click)="toggleEditingList()">Edit</button>
+<div class="container-column" [ngStyle]="{'background-color': '#' + listItem.color}">
+    <p>{{listItem.title}}</p>
+    <button type="button" class="button button-secondary" (click)="toggleCreatingTask()">New Task</button>
+
+    <div class="container-column">
+        @for(task of tasksArraySignal(); track task._id){
+        <app-task [taskItem]="task" (taskDeleted)="removeTask($event)"></app-task>
+        }
+    </div>
+
+
+    <button (click)="deleteList()">Delete</button>
+    <button (click)="toggleEditingList()">Edit</button>
+
+    @if(isCreatingNewTask){
+    <form [formGroup]="newTaskForm" (ngSubmit)="submitNewTask()">
+        <fieldset>
+            <div class="form-field">
+                <label for="taskTitle">Title: </label>
+                <input id="taskTitle" name="taskTitle" formControlName="taskTitle">
+            </div>
+            <div class="form-field">
+                <label for="taskDescription">Description: </label>
+                <input id="taskDescription" name="taskDescription" formControlName="taskDescription">
+            </div>
+            <div class="form-field">
+                <label for="taskDueDate">Due date: </label>
+                <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date">
+            </div>
+        </fieldset>
+        <div class="form-buttons">
+            <button type="submit" class="button button-primary" [disabled]="canSubmitNewTaskForm()">Submit</button>
+            <button type="button" class="button button-secondary" (click)="toggleCreatingTask()">Cancel</button>
+        </div>
+    </form>
+    }
+</div>
+}

@@ -1,0 +1,36 @@
+@if(isEditingTask){
+<form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()">
+    <fieldset>
+        <div class="form-field">
+            <label for="taskTitle">Title: </label>
+            <input id="taskTitle" name="taskTitle" formControlName="taskTitle">
+        </div>
+        <div class="form-field">
+            <label for="taskDescription">Description: </label>
+            <input id="taskDescription" name="taskDescription" formControlName="taskDescription">
+        </div>
+        <div class="form-field">
+            <label for="taskDueDate">Due date: </label>
+            <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date">
+        </div>
+    </fieldset>
+    <div class="form-buttons">
+        <button type="submit" class="button button-primary" [disabled]="canSubmitEditTaskForm()">Submit</button>
+        <button type="button" class="button button-secondary" [disabled]="!isEditingTask"
+            (click)="toggleEditingTask()">Cancel</button>
+    </div>
+</form>
+} @else {
+<div class="container-column">
+    <p>{{taskItem.title}}</p>
+    <p>{{taskItem.description}}</p>
+    <p>{{dueDateFormated}}</p>
+    <p>{{taskItem.completed}}</p>
+
+    <div class="container-row">
+        <button (click)="completeTask()">Complete</button>
+        <button (click)="toggleEditingTask()">Edit</button>
+        <button (click)="deleteTask()">Delete</button>
+    </div>
+</div>
+}

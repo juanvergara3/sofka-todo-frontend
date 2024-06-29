@@ -1,8 +1,11 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { ListComponent } from '../../components/list/list.component';
 import { ListService } from '../../services/list.service';
 import { List } from '../../interfaces/list.interface';
+import { ListDto } from '../../dto/list.dto';
+
 import { NameService } from '../../services/name.service';
 
 @Component({
@@ -40,7 +43,10 @@ export class ToDoComponent {
 
   submitNewList() {
     if (this.newListForm.valid) {
-      const list = this.newListForm.value;
+      const list: ListDto = {
+        title: this.newListForm.value.title,
+        color: this.newListForm.value.color.substring(1)
+      };
 
       this.isCreatingNewList = false;
 
