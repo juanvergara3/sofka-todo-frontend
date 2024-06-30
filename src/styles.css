@@ -69,7 +69,6 @@ body {
 .content {
     height: 100%;
     width: 100%;
-    padding: 15px;
     background-color: var(--Dark-dark-grey);
     display: flex;
     flex-direction: row;

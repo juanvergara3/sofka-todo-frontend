@@ -1,11 +1,13 @@
-<div class="main-menu">
-
-    @if(!isLoggedIn()){
-    <button [routerLink]="['/login']">Login</button>
-    <button [routerLink]="['/signup']">SignUp</button>
-    } @else {
-    <p>Hello {{nameComputed()}}!</p>
-    <button (click)="logout()">Logout</button>
-    }
-
+<div class="navbar-container">
+    <img src="../../../favicon.ico" alt="logo" class="logo">
+    <h2>Sofka To-Do</h2>
+    <div class="main-menu">
+        @if(!isLoggedIn()){
+        <button [routerLink]="['/login']">Login</button>
+        <button [routerLink]="['/signup']">SignUp</button>
+        } @else {
+        <p>Hello {{nameComputed()}}!</p>
+        <button (click)="logout()">Logout</button>
+        }
+    </div>
 </div>
