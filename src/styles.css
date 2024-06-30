@@ -71,7 +71,8 @@ body {
     width: 100%;
     background-color: var(--Dark-dark-grey);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 /* containers */
