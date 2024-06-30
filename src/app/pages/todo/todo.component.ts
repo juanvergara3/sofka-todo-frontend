@@ -7,11 +7,12 @@ import { List } from '../../interfaces/list.interface';
 import { ListDto } from '../../dto/list.dto';
 
 import { NameService } from '../../services/name.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [ListComponent, ReactiveFormsModule],
+  imports: [ListComponent, ReactiveFormsModule, NgStyle],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })

@@ -1,0 +1,110 @@
+:host {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    --gap: 20px;
+    --columns: 3;
+    --item-width: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
+}
+
+.lists-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: var(--Dark-medium-grey);
+}
+
+.new-list-button {
+    height: 600px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    width: var(--item-width);
+}
+
+.new-list-button:hover {
+    background-color: var(--Light-dark-grey);
+}
+
+.new-list-icon {
+    filter: invert(1);
+}
+
+.form-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+form {
+    width: var(--item-width);
+    border: 2px solid var(--White);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15PX;
+}
+
+fieldset {
+    border: none;
+    border-radius: 10PX;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: var(--Dark-medium-grey);
+}
+
+label {
+    font-size: 1.2em;
+    color: var(--White);
+}
+
+.form-button {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid var(--Black);
+    background-color: var(--White);
+    color: var(--Black);
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.form-button:hover {
+    filter: invert(15%);
+}
+
+.form-button:disabled {
+    background-color: var(--Dark-light-grey);
+    color: var(--Light-dark-grey);
+    cursor: not-allowed;
+}
+
+.form-button:disabled:hover {
+    filter: none;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--White);
+    background-color: var(--Dark-dark-grey);
+    color: var(--White);
+}
+
+input[type=color] {
+    height: 50px;
+    cursor: grab;
+}

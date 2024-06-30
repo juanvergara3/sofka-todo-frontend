@@ -22,10 +22,10 @@
 </form>
 } @else {
 <div class="container-column">
-    <p>{{taskItem.title}}</p>
-    <p>{{taskItem.description}}</p>
-    <p>{{dueDateFormated}}</p>
-    <p>{{taskItem.completed}}</p>
+    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.title}}</p>
+    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.description}}</p>
+    <p [ngStyle]="{'color': '#' + contrastColor}">{{dueDateFormated}}</p>
+    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.completed}}</p>
 
     <div class="container-row">
         <button (click)="completeTask()">Complete</button>

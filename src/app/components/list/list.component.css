@@ -1,0 +1,67 @@
+:host {
+    --gap: 20px;
+    --columns: 3;
+    --item-width: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
+    width: var(--item-width);
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.list-top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    height: 32px;
+    width: 32px;
+}
+
+.icon-button:hover {
+    filter: invert(70%);
+}
+
+.icon-inverted {
+    filter: invert(1);
+}
+
+.list-content {
+    padding: 15px;
+}
+
+h3 {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* .tasks-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: var(--Dark-medium-grey);
+} */

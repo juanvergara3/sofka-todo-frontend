@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgStyle } from '@angular/common';
+import { NgStyle, NgClass } from '@angular/common';
 
 import { Task } from '../../interfaces/task.interface';
 import { TaskDto } from '../../dto/task.dto';
@@ -11,10 +11,12 @@ import { List } from '../../interfaces/list.interface';
 import { ListDto } from '../../dto/list.dto';
 import { ListService } from '../../services/list.service';
 
+import { ConstrastColorService } from '../../services/constrast-color.service';
+
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [TaskComponent, NgStyle, ReactiveFormsModule],
+  imports: [TaskComponent, NgStyle, NgClass, ReactiveFormsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -28,6 +30,7 @@ export class ListComponent {
   formBuilder = inject(FormBuilder);
   listService = inject(ListService);
   taskService = inject(TaskService);
+  contrastColorService = inject(ConstrastColorService);
 
   constructor() {
     this.editListForm = this.formBuilder.group({
@@ -46,6 +49,8 @@ export class ListComponent {
 
   @Input()
   listItem!: List;
+
+  contrastColor: string = '';
 
   @Output()
   listDeleted = new EventEmitter<string>();
@@ -114,6 +119,8 @@ export class ListComponent {
 
 
   ngOnInit() {
+    this.contrastColor = this.contrastColorService.calculteContrast(this.listItem.color);
+
     this.taskService.getTasks(this.listItem._id).subscribe((tasks: Task[]) => {
       this.tasksArraySignal.set(tasks);
     });

@@ -3,11 +3,12 @@ import { Task } from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
 import { TaskDto } from '../../dto/task.dto';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgStyle],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
@@ -29,6 +30,9 @@ export class TaskComponent {
 
   @Input()
   taskItem!: Task;
+
+  @Input()
+  contrastColor!: string;
 
   dueDateFormated: string = '';
 

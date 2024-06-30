@@ -18,19 +18,31 @@
 </form>
 } @else {
 
-<div class="container-column" [ngStyle]="{'background-color': '#' + listItem.color}">
-    <p>{{listItem.title}}</p>
-    <button type="button" class="button button-secondary" (click)="toggleCreatingTask()">New Task</button>
+<div class="container-column list-content" [ngStyle]="{'background-color': '#' + listItem.color}">
+
+    <div class="list-top-bar">
+        <h3 [ngStyle]="{'color': '#' + contrastColor}">{{listItem.title}}</h3>
+        <div class="buttons-container">
+            <button type="button" class="icon-button" (click)="toggleCreatingTask()">
+                <img src="../../../assets/icons/plus_icon.png" alt="Create new task"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+            </button>
+            <button type="button" class="icon-button" (click)="toggleEditingList()">
+                <img src="../../../assets/icons/edit_icon.png" alt="Edit list"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+            </button>
+            <button type="button" class="icon-button" (click)="deleteList()">
+                <img src="../../../assets/icons/delete_icon.png" alt="Delete list"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+            </button>
+        </div>
+    </div>
 
     <div class="container-column">
         @for(task of tasksArraySignal(); track task._id){
-        <app-task [taskItem]="task" (taskDeleted)="removeTask($event)"></app-task>
+        <app-task [taskItem]="task" [contrastColor]="contrastColor" (taskDeleted)="removeTask($event)"></app-task>
         }
     </div>
-
-
-    <button (click)="deleteList()">Delete</button>
-    <button (click)="toggleEditingList()">Edit</button>
 
     @if(isCreatingNewTask){
     <form [formGroup]="newTaskForm" (ngSubmit)="submitNewTask()">
