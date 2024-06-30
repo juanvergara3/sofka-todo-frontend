@@ -35,6 +35,8 @@ export class ToDoComponent {
 
   toggleCreatingList() {
     this.isCreatingNewList = !this.isCreatingNewList;
+
+    this.resetForm();
   }
 
   canSubmit() {
@@ -53,9 +55,13 @@ export class ToDoComponent {
       this.listService.createList(list).subscribe((list: List) => {
         this.listsArraySignal.set([...this.listsArraySignal(), list]);
 
-        this.newListForm.reset();
+        this.resetForm();
       });
     }
+  }
+
+  resetForm() {
+    this.newListForm.setValue({ title: '', color: `#000000` });
   }
 
   removeList(id: string) {
@@ -68,5 +74,7 @@ export class ToDoComponent {
     });
 
     this.nameService.updateName();
+
+    this.resetForm();
   }
 }
