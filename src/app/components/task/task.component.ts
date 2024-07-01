@@ -22,8 +22,6 @@ export class TaskComponent {
 
   constructor() {
     this.editTaskForm = this.formBuilder.group({
-      taskTitle: ['', [Validators.required]],
-      taskDescription: [''],
       taskTitle: ['', [Validators.required, Validators.maxLength(60)]],
       taskDescription: ['', [Validators.maxLength(300)]],
       taskDueDate: [''],
@@ -85,7 +83,11 @@ export class TaskComponent {
   }
 
   ngOnInit() {
-    this.dueDateFormated = new Date(this.taskItem.dueDate).toISOString().substring(0, 10);
+
+    if (this.taskItem.dueDate === undefined)
+      this.dueDateFormated = '';
+    else
+      this.dueDateFormated = new Date(this.taskItem.dueDate).toISOString().substring(0, 10);
 
     this.editTaskForm.setValue({
       taskTitle: this.taskItem.title,

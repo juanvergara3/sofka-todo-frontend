@@ -34,14 +34,11 @@ export class ListComponent {
 
   constructor() {
     this.editListForm = this.formBuilder.group({
-      listTitle: ['', [Validators.required]],
       listTitle: ['', [Validators.required, Validators.maxLength(45)]],
       listColor: ['', [Validators.required, Validators.pattern('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')]]
     });
 
     this.newTaskForm = this.formBuilder.group({
-      taskTitle: ['', [Validators.required]],
-      taskDescription: [''],
       taskTitle: ['', [Validators.required, Validators.maxLength(60)]],
       taskDescription: ['', [Validators.maxLength(300)]],
       taskDueDate: [''],
@@ -67,12 +64,10 @@ export class ListComponent {
   }
 
   canSubmitEditTistForm() {
-    return this.editListForm.value.listTitle === '';
     return !this.editListForm.valid;
   }
 
   canSubmitNewTaskForm() {
-    return this.newTaskForm.value.taskTitle === '';
     return !this.newTaskForm.valid;
   }
 
@@ -97,7 +92,6 @@ export class ListComponent {
       const task: TaskDto = {
         title: this.newTaskForm.value.taskTitle,
         description: this.newTaskForm.value.taskDescription,
-        dueDate: this.newTaskForm.value.taskDueDate,
         dueDate: this.newTaskForm.value.taskDueDate == '' ? undefined : this.newTaskForm.value.taskDueDate,
         completed: false,
         list: this.listItem._id
