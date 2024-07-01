@@ -108,6 +108,9 @@ export class ListComponent {
   }
 
   deleteList() {
+    this.taskService.deleteTasksByListId(this.listItem._id).subscribe(() => {
+      this.tasksArraySignal.set([]);
+    });
     this.listService.deleteList(this.listItem._id).subscribe((returned) => {
       this.listDeleted.emit(returned._id);
     });

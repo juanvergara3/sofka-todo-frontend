@@ -33,4 +33,8 @@ export class TaskService {
   deleteTask(id: string): Observable<Task> {
     return this.apiService.deleteRequest(`${this.baseUrl}/delete`, id) as Observable<Task>;
   }
+
+  deleteTasksByListId(listId: string): Observable<{ deletedCount?: number }> {
+    return this.apiService.deleteRequest(`${this.baseUrl}/deleteByList`, listId) as Observable<{ deletedCount?: number }>;
+  }
 }
