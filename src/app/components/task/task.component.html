@@ -35,7 +35,8 @@
     [ngStyle]="{'text-decoration-color': '#' + contrastColor, 'background-color': '#' + backgroundColor, 'border': '2px solid #' + contrastColor}">
     <div class="task-details">
         <h4 [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.title}}</h4>
-        <p [ngStyle]="{'color': '#' + contrastColor}" [ngClass]="{'past-due':isPastDue}">{{dueDateFormated}}</p>
+        <p [ngStyle]="{'color': '#' + contrastColor}" [ngClass]="{'past-due':isPastDue}">
+            {{dueDateFormated}}</p>
 
         <div class="button-container">
             <button type="button" class="icon-button" (click)="completeTask()">

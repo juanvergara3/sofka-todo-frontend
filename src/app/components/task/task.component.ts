@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Task } from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
 import { TaskDto } from '../../dto/task.dto';
@@ -39,8 +39,7 @@ export class TaskComponent {
   @Input()
   backgroundColor!: string;
 
-  dueDateFormated: string = '';
-
+  dueDateFormated!: string;
   isPastDue!: boolean;
 
   @Output()
@@ -59,7 +58,7 @@ export class TaskComponent {
       const task: TaskDto = {
         title: this.editTaskForm.value.taskTitle,
         description: this.editTaskForm.value.taskDescription,
-        dueDate: this.editTaskForm.value.taskDueDate,
+        dueDate: this.editTaskForm.value.taskDueDate == '' ? null : this.editTaskForm.value.taskDueDate,
         completed: this.taskItem.completed,
         list: this.taskItem.list
       };
@@ -68,6 +67,8 @@ export class TaskComponent {
 
       this.taskService.updateTask(task, this.taskItem._id).subscribe((returned) => {
         this.taskItem = returned;
+        this.setDates();
+        this.initForm();
       });
     }
   }
@@ -89,9 +90,8 @@ export class TaskComponent {
     });
   }
 
-  ngOnInit() {
-
-    if (this.taskItem.dueDate === undefined) {
+  setDates() {
+    if (this.taskItem.dueDate === null) {
       this.dueDateFormated = '';
       this.isPastDue = false;
     }
@@ -99,12 +99,19 @@ export class TaskComponent {
       this.dueDateFormated = new Date(this.taskItem.dueDate).toISOString().substring(0, 10);
       this.isPastDue = this.dateService.isPastDue(this.dueDateFormated);
     }
+  }
 
-
+  initForm() {
     this.editTaskForm.setValue({
       taskTitle: this.taskItem.title,
       taskDescription: this.taskItem.description,
       taskDueDate: this.dueDateFormated,
     });
+  }
+
+  ngOnInit() {
+    this.setDates();
+
+    this.initForm();
   }
 }
