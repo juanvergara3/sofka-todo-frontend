@@ -1,27 +1,4 @@
 @if(isEditingTask){
-<!-- <form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()">
-    <fieldset>
-        <div class="form-field">
-            <label for="taskTitle">Title: </label>
-            <input id="taskTitle" name="taskTitle" formControlName="taskTitle" autocomplete="off">
-        </div>
-        <div class="form-field">
-            <label for="taskDescription">Description: </label>
-            <input id="taskDescription" name="taskDescription" formControlName="taskDescription" autocomplete="off">
-        </div>
-        <div class="form-field">
-            <label for="taskDueDate">Due date: </label>
-            <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date" autocomplete="off">
-        </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button type="submit" class="button button-primary" [disabled]="canSubmitEditTaskForm()">Submit</button>
-        <button type="button" class="button button-secondary" [disabled]="!isEditingTask"
-            (click)="toggleEditingTask()">Cancel</button>
-    </div>
-</form> -->
-
-
 <form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()" class="editing-task-form">
     <fieldset class="editing-task-fieldset" [ngStyle]="{'border': '2px solid #' + contrastColor}">
 
