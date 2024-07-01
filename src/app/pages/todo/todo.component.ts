@@ -27,7 +27,7 @@ export class ToDoComponent {
 
   constructor() {
     this.newListForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
+      title: ['', [Validators.required, Validators.maxLength(45)]],
       color: ['', [Validators.required, Validators.pattern('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')]]
     });
   }
@@ -41,7 +41,7 @@ export class ToDoComponent {
   }
 
   canSubmit() {
-    return this.newListForm.value.title === '';
+    return !this.newListForm.valid;
   }
 
   submitNewList() {

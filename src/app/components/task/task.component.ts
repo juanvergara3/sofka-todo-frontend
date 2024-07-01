@@ -24,6 +24,8 @@ export class TaskComponent {
     this.editTaskForm = this.formBuilder.group({
       taskTitle: ['', [Validators.required]],
       taskDescription: [''],
+      taskTitle: ['', [Validators.required, Validators.maxLength(60)]],
+      taskDescription: ['', [Validators.maxLength(300)]],
       taskDueDate: [''],
     });
   }
@@ -44,7 +46,7 @@ export class TaskComponent {
   }
 
   canSubmitEditTaskForm() {
-    return this.editTaskForm.value.listTitle === '';
+    return !this.editTaskForm.valid;
   }
 
   submitUpdatedTask() {
