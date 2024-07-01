@@ -1,17 +1,17 @@
 @if(isEditingTask){
-<form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()">
+<!-- <form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()">
     <fieldset>
         <div class="form-field">
             <label for="taskTitle">Title: </label>
-            <input id="taskTitle" name="taskTitle" formControlName="taskTitle">
+            <input id="taskTitle" name="taskTitle" formControlName="taskTitle" autocomplete="off">
         </div>
         <div class="form-field">
             <label for="taskDescription">Description: </label>
-            <input id="taskDescription" name="taskDescription" formControlName="taskDescription">
+            <input id="taskDescription" name="taskDescription" formControlName="taskDescription" autocomplete="off">
         </div>
         <div class="form-field">
             <label for="taskDueDate">Due date: </label>
-            <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date">
+            <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date" autocomplete="off">
         </div>
     </fieldset>
     <div class="form-buttons">
@@ -19,18 +19,68 @@
         <button type="button" class="button button-secondary" [disabled]="!isEditingTask"
             (click)="toggleEditingTask()">Cancel</button>
     </div>
+</form> -->
+
+
+<form [formGroup]="editTaskForm" (ngSubmit)="submitUpdatedTask()" class="editing-task-form">
+    <fieldset class="editing-task-fieldset" [ngStyle]="{'border': '2px solid #' + contrastColor}">
+
+        <div class="container-colum">
+            <div class="form-field">
+                <label for="taskTitle" class="editing-task-label">Title: </label>
+                <input id="taskTitle" name="taskTitle" formControlName="taskTitle" autocomplete="off"
+                    class="editing-task-input">
+            </div>
+            <div class="form-field">
+                <label for="taskDueDate" class="editing-task-label">Due date: </label>
+                <input id="taskDueDate" name="taskDueDate" formControlName="taskDueDate" type="date" autocomplete="off"
+                    class="editing-task-input">
+            </div>
+
+        </div>
+
+        <div class="form-field">
+            <label for="taskDescription" class="editing-task-label">Description: </label>
+            <textarea id="taskDescription" name="taskDescription" formControlName="taskDescription" autocomplete="off"
+                class="editing-task-input editing-task-description"></textarea>
+        </div>
+
+    </fieldset>
+    <div class="form-buttons-container">
+        <button type="submit" class="editing-task-button" [disabled]="canSubmitEditTaskForm()">Save</button>
+        <button type="button" class="editing-task-button" [disabled]="!isEditingTask"
+            (click)="toggleEditingTask()">Cancel</button>
+    </div>
 </form>
 } @else {
-<div class="container-column">
-    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.title}}</p>
-    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.description}}</p>
-    <p [ngStyle]="{'color': '#' + contrastColor}">{{dueDateFormated}}</p>
-    <p [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.completed}}</p>
 
-    <div class="container-row">
-        <button (click)="completeTask()">Complete</button>
-        <button (click)="toggleEditingTask()">Edit</button>
-        <button (click)="deleteTask()">Delete</button>
+<div class="task-content" [ngClass]="{'completed-task': taskItem.completed}"
+    [ngStyle]="{'text-decoration-color': '#' + contrastColor, 'background-color': '#' + backgroundColor, 'border': '2px solid #' + contrastColor}">
+    <div class="task-details">
+        <h4 [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.title}}</h4>
+        <p [ngStyle]="{'color': '#' + contrastColor}" [ngClass]="{'past-due':isPastDue}">{{dueDateFormated}}</p>
+
+        <div class="button-container">
+            <button type="button" class="icon-button" (click)="completeTask()">
+                @if (!taskItem.completed) {
+                <img src="../../../assets/icons/unchecked_icon.png" alt="Complete task"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+                } @else {
+                <img src="../../../assets/icons/checked_icon.png" alt="Un-complete task"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+                }
+            </button>
+            <button type="button" class="icon-button" (click)="toggleEditingTask()">
+                <img src="../../../assets/icons/edit_icon.png" alt="Edit task"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+            </button>
+            <button type="button" class="icon-button" (click)="deleteTask()">
+                <img src="../../../assets/icons/delete_icon.png" alt="Delete task"
+                    [ngClass]="{'icon-inverted': contrastColor == 'ffffff'}">
+            </button>
+        </div>
     </div>
+
+    <p class="description" [ngStyle]="{'color': '#' + contrastColor}">{{taskItem.description}}</p>
 </div>
 }

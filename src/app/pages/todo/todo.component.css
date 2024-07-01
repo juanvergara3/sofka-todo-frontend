@@ -47,6 +47,7 @@
 
 form {
     width: var(--item-width);
+    height: 600px;
     border: 2px solid var(--White);
     border-radius: 10px;
     padding: 15px;

@@ -3,12 +3,13 @@ import { Task } from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
 import { TaskDto } from '../../dto/task.dto';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
+import { DateService } from '../../services/date.service';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [ReactiveFormsModule, NgStyle],
+  imports: [ReactiveFormsModule, NgStyle, NgClass],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
@@ -18,6 +19,7 @@ export class TaskComponent {
   isEditingTask: boolean = false;
 
   taskService = inject(TaskService);
+  dateService = inject(DateService);
   formBuilder = inject(FormBuilder);
 
   constructor() {
@@ -34,7 +36,12 @@ export class TaskComponent {
   @Input()
   contrastColor!: string;
 
+  @Input()
+  backgroundColor!: string;
+
   dueDateFormated: string = '';
+
+  isPastDue!: boolean;
 
   @Output()
   taskDeleted = new EventEmitter<string>();
@@ -84,10 +91,15 @@ export class TaskComponent {
 
   ngOnInit() {
 
-    if (this.taskItem.dueDate === undefined)
+    if (this.taskItem.dueDate === undefined) {
       this.dueDateFormated = '';
-    else
+      this.isPastDue = false;
+    }
+    else {
       this.dueDateFormated = new Date(this.taskItem.dueDate).toISOString().substring(0, 10);
+      this.isPastDue = this.dateService.isPastDue(this.dueDateFormated);
+    }
+
 
     this.editTaskForm.setValue({
       taskTitle: this.taskItem.title,

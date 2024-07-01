@@ -4,7 +4,7 @@
     }
 
     @if(isCreatingNewList){
-    <form [formGroup]="newListForm" (ngSubmit)="submitNewList()" class="list-container"
+    <form [formGroup]="newListForm" (ngSubmit)="submitNewList()"
         [ngStyle]="{'background-color': newListForm.value.color}">
         <fieldset>
             <div class="form-field">

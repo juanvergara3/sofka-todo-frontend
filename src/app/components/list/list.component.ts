@@ -51,6 +51,7 @@ export class ListComponent {
   listItem!: List;
 
   contrastColor: string = '';
+  brightnessAdjustedColor: string = '';
 
   @Output()
   listDeleted = new EventEmitter<string>();
@@ -100,7 +101,7 @@ export class ListComponent {
       this.isCreatingNewTask = false;
 
       this.taskService.createTask(task).subscribe((task: Task) => {
-        this.tasksArraySignal.set([...this.tasksArraySignal(), task]);
+        this.tasksArraySignal.set([task, ...this.tasksArraySignal()]);
 
         this.newTaskForm.reset();
       });
@@ -123,9 +124,11 @@ export class ListComponent {
 
   ngOnInit() {
     this.contrastColor = this.contrastColorService.calculteContrast(this.listItem.color);
+    this.brightnessAdjustedColor = this.contrastColorService.adjustColorBrightness(this.listItem.color);
 
     this.taskService.getTasks(this.listItem._id).subscribe((tasks: Task[]) => {
       this.tasksArraySignal.set(tasks);
+      this.tasksArraySignal.update(tasks => tasks.reverse());
     });
 
     this.editListForm.setValue({ listTitle: this.listItem.title, listColor: `#${this.listItem.color}` });

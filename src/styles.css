@@ -117,15 +117,17 @@ input[type="date"] {
 }
 
 input[type="date"]::-webkit-datetime-edit-text {
-    padding: 0 5px;
+    padding: 5px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(210%) hue-rotate(194deg) brightness(116%) contrast(100%);
     border-radius: 5px;
+    width: 20px;
+    height: 20px;
 }
 
 input::-webkit-calendar-picker-indicator:hover {
-    filter: brightness(0) saturate(100%) invert(76%) sepia(71%) saturate(573%) hue-rotate(17deg) brightness(101%) contrast(81%);
     cursor: pointer;
+    filter: invert(70%);
 }

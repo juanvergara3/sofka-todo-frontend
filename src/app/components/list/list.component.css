@@ -52,16 +52,155 @@ h3 {
     align-items: center;
 }
 
-/* .tasks-container {
+.tasks-container {
     height: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
     overflow: hidden;
-    overflow-y: scroll;
-    padding: 20px;
-    margin: 10px;
+    overflow-y: auto;
+    padding: 10px;
+    margin: 0px;
     border-radius: 10px;
+}
+
+/* styles for the editing list form */
+
+.form-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.editing-list-form {
+    width: 100%;
+    height: 600px;
+    border: 2px solid var(--White);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15PX;
+}
+
+.editing-list-fieldset {
+    border: none;
+    border-radius: 10PX;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     background-color: var(--Dark-medium-grey);
-} */
+}
+
+.editing-list-label {
+    font-size: 1.2em;
+    color: var(--White);
+}
+
+.editing-list-button {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid var(--Black);
+    background-color: var(--White);
+    color: var(--Black);
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 10px;
+}
+
+.editing-list-button:hover {
+    filter: invert(15%);
+}
+
+.editing-list-button:disabled {
+    background-color: var(--Dark-light-grey);
+    color: var(--Light-dark-grey);
+    cursor: not-allowed;
+}
+
+.editing-list-button:disabled:hover {
+    filter: none;
+}
+
+.editing-list-input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--White);
+    background-color: var(--Dark-dark-grey);
+    color: var(--White);
+}
+
+input[type=color] {
+    height: 50px;
+    cursor: grab;
+}
+
+/* styles for the creating task form */
+
+.new-task-form {
+    width: 100%;
+    height: 600px;
+    border: 2px solid var(--White);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15PX;
+}
+
+.new-task-fieldset {
+    border: none;
+    border-radius: 10PX;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    background-color: var(--Dark-medium-grey);
+}
+
+.new-task-label {
+    font-size: 1.2em;
+    color: var(--White);
+}
+
+.new-task-button {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid var(--Black);
+    background-color: var(--White);
+    color: var(--Black);
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.new-task-button:hover {
+    filter: invert(15%);
+}
+
+.new-task-button:disabled {
+    background-color: var(--Dark-light-grey);
+    color: var(--Light-dark-grey);
+    cursor: not-allowed;
+}
+
+.new-task-button:disabled:hover {
+    filter: none;
+}
+
+.new-task-input {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--White);
+    background-color: var(--Dark-dark-grey);
+    color: var(--White);
+}
+
+.new-task-description {
+    height: 80%;
+    resize: none;
+}
